@@ -1,12 +1,13 @@
 <?php
 
 if(isset($_GET["windspeed"])) {
-   $stato = $_GET["windspeed"]; 
+   $state = $_GET["windspeed"]; 
 
-   $servername = "localhost";
-   $username = "root";                  //username database
-   $password = "GreenPlanet99!";                  //password database
-   $dbname = "anemometro";                    //nome database
+   $servername = "";                // mysql server address
+   $username = "";                  // database username
+   $password = "";                  // database password
+   $dbname = "anemometer";          // database name
+   $table = "pellicciotti";         // table pellicciotti@anemometer database
 
    // Create connection
    $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,22 +18,22 @@ if(isset($_GET["windspeed"])) {
 
    //creare una tabella "monitoraggio" con due colonne "timeMYSQL" e "windspeed" o modificare i campi
    //della query sottostante
-   $sql = "INSERT INTO pellicciotti (windspeed) VALUES ($stato)";
+   $sql = "INSERT INTO $table (windspeed) VALUES ($state)";
 
 
    if ($conn->query($sql) == TRUE){
       
-      echo "New records created successfully \n";
+      echo "[*] New records created successfully \n";
     
    }
       
    else{
-      echo "Error: " . $sql . " => " . $conn->error . "\n";
+      echo "[!] Error: " . $sql . " => " . $conn->error . "\n";
    }
 
    $conn->close();
 } 
 else {
-   echo "Stato is not set \n";
+   echo "[!] Stat not set \n";
 }
 ?>
