@@ -1,11 +1,11 @@
 #include <SPI.h>
 #include <WiFi.h>
 
-char ssid[] = "MikroTik"; // your network 2.4Ghz SSID (name)
-char pass[] = "passwordtobechanged"; // your network password
+char ssid[] = ""; // your network 2.4Ghz SSID (name)
+char pass[] = ""; // your network password
 
 boolean acceso = false;
-char server[] = "192.168.1.21"; // indirizzo ip server locale
+char server[] = ""; // local apache server ip
 WiFiClient client;
 int status = WL_IDLE_STATUS;
 
@@ -13,17 +13,14 @@ unsigned long lastConnectionTime = 0; // last time you connected to the server, 
 
 const unsigned long postingInterval = 10L * 1000L; // delay between updates, in milliseconds
 
-
-//necessario per anemometro
 float windspeed=0;
 float C1 = 2.5;
 float C2 = 2.23694;
-int getpulsepin = 2; //pin digitale di Arduino al quale collegare l'anemometro
+int getpulsepin = 2; // digital Arduino pin connected to anemometer
 float contTours = 0;
 boolean stato = 0;
 unsigned long startTours;
 
-//necessario per funzione creaUrl
 String strURL = "";
 
 void setup()
@@ -93,17 +90,17 @@ void loop()
     while ((millis() - startTours) < 60000)
     {
 
-      boolean pinval = digitalRead(getpulsepin); //lettura segnale pin anemometro
+      boolean pinval = digitalRead(getpulsepin); // read anemometer pin
 
       if ((stato == 0) & (pinval == 1))
       {
-        contTours++;                            // contatore giri compitui dall'anemometro
+        contTours++;                            // rotor spin counter
       }
 
       stato = pinval;
     }
 
-    windspeed = (contTours / 60) * C1 * C2; //velocità del vento tarata sul contatore di giri e un intervallo di 1 minuto
+    windspeed = (contTours / 60) * C1 * C2; // wind speed as rotor spin per minute
     Serial.print(windspeed, 2);
     Serial.println(" m/s");
 
@@ -120,7 +117,7 @@ void creaUrl(float wind)
 
     Serial.println("connected");
 
-    strURL = "GET /backAnem2.0.php?windspeed=";
+    strURL = "GET /backAnemometer.php?windspeed=";
     strURL += "'";
     strURL += String(wind,2);
     // strURL += "m/s'";
