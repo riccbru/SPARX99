@@ -1,1 +1,1 @@
-# SPARX99_Anemometer
+# SPARX99 - Anemometer
