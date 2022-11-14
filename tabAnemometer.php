@@ -9,10 +9,11 @@
 
 <?php
 
-    $servername = "localhost";
-    $username = "root";                  //username database
-    $password = "GreenPlanet99!";                  //password database
-    $dbname = "anemometro";                    //nome database
+    $servername = "";                // mysql server address
+    $username = "";                  // database username
+    $password = "";                  // database password
+    $dbname = "anemometer";          // database name
+    $table = "pellicciotti";         // table pellicciotti@anemometer database
   
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,12 +31,12 @@
 
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            $field1name = $row["timestamp"];
-            $field2name = $row["windspeed"];
+            $date = $row["timestamp"];
+            $speed = $row["windspeed"];
 
         echo '<tr> 
-                    <td>'.$field1name.'</td> 
-                    <td>'.$field2name.'</td> 
+                    <td>'.$date.'</td> 
+                    <td>'.$speed.'</td> 
                 </tr>';
     }
     $result->free();
