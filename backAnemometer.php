@@ -4,8 +4,8 @@ if(isset($_GET["windspeed"])) {
    $state = $_GET["windspeed"]; 
 
    $servername = "";                // mysql server address
-   $username = "";                  // database username
-   $password = "";                  // database password
+   $username = "";                  // mysql username
+   $password = "";                  // mysql password
    $dbname = "anemometer";          // database name
    $table = "pellicciotti";         // table pellicciotti@anemometer database
 
