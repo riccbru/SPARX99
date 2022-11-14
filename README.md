@@ -11,4 +11,4 @@ The HTTP server was run on an Apache Server on a Linux computer in my LAN (I use
 Lastly I programmed Arduino with anemometer.ino file and made sure it was all running!
 
 Once got the samples I exported database rows in a csv file.
-I then created a DataFrame in Pandas to understand the data (check python file).
+I then created a DataFrame in Pandas to understand the data (check dataframe.py).
