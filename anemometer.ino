@@ -7,11 +7,11 @@
 #include <SPI.h>
 #include <WiFi.h>
 
-char ssid[] = ""; // your network 2.4Ghz SSID (name)
-char pass[] = ""; // your network password
+char ssid[] = SECRET_SSID; // your network 2.4Ghz SSID (name)
+char pass[] = SECRET_PASS; // your network password
 
 boolean acceso = false;
-char server[] = ""; // local apache server ip
+char server[] = SECRET_SERVER; // local apache server ip
 WiFiClient client;
 int status = WL_IDLE_STATUS;
 
@@ -161,7 +161,7 @@ void printWifiStatus()
 
   long rssi = WiFi.RSSI();
 
-  Serial.print("signal strength (RSSI):");
+  Serial.print("signal strength (RSSI): ");
 
   Serial.print(rssi);
 
