@@ -1,7 +1,12 @@
-#!/usr/local/bin/python3.9
+#!/usr/local/bin/python
 
 import pandas as pd
 import matplotlib.pyplot as plt
+
+###############################################
+csv_path = ""                                 #
+# formatted as tuple ("DateTime", "Velocity") #
+###############################################
 
 
 def df_stats(DataFrame):
@@ -21,7 +26,7 @@ def df_stats(DataFrame):
     print("MIN:\t" + str(df["WindSpeed"].min()) + " m/s")
     print("MAX:\t" + str(df["WindSpeed"].max()) + " m/s")
     print("MODA:\t\t", mode)
-    print("MEDIA:\t\t" + str(round(df["WindSpeed"].mean(), 2)))
+    print("MEDIA:\t\t" + str(round(df["WindSpeed"].mean(), 3)))
     print("MEDIANA:\t" + str(df["WindSpeed"].median()) + "\n")
     print("STD:\t" + str(df["WindSpeed"].std()))
     print("VAR:\t" + str(df["WindSpeed"].var()) + "\n")
@@ -42,15 +47,17 @@ def set_plt(plt):
 
     return
 
-### DateTime, Velocity
 
-df = pd.read_csv("/Users/bankich/Desktop/Sparx99/anemometro/dati_anemometro.csv") # DateFrame NULL
+# DateFrame NULL
+df = pd.read_csv(csv_path) # DateFrame NULL
 #df = df.loc[(df["WindSpeed"] != 0)] # DataFrame NOTNULL
 
 #df_stats(df)
 
-df["WindSpeed"].plot(kind = "hist", x = "WindSpeed", xticks = (range(0, 90, 2)), yticks = (range(0, 140000, 2000)), grid = True) # RIGHE NULLE
-#df["WindSpeed"].plot(kind = "hist", x = "WindSpeed", xticks = (range(0, 90, 2)), yticks = (range(0, 55000, 1500)), grid = True) # RIGHE NON NULLE
+# CON RIGHE NULLE
+df["WindSpeed"].plot(kind = "hist", x = "WindSpeed", xticks = (range(0, 90, 2)), yticks = (range(0, 140000, 2000)), grid = True)
+ # SENZA RIGHE NULLE
+#df["WindSpeed"].plot(kind = "hist", x = "WindSpeed", xticks = (range(0, 90, 2)), yticks = (range(0, 55000, 1500)), grid = True)
 
 plt.title("GRAFICO FREQUENZE CON RIGHE NULLE")
 plt.xlabel("Velocità")
