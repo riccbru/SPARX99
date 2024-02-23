@@ -13,12 +13,12 @@
     $username = "";                  // mysql username
     $password = "";                  // mysql password
     $dbname = "anemometer";          // database name
-    $table = "pellicciotti";         // table pellicciotti@anemometer database
+    $table = "";                     // table
   
     $conn = new mysqli($servername, $username, $password, $dbname);
 
 
-    $query = "SELECT * FROM pellicciotti";
+    $query = "SELECT * FROM $table";
     $result = $conn->query($query);
 
 
